@@ -3,10 +3,15 @@ require('./models/Track');
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const app = express();
 const authRoutes = require('./routes/authRoutes');
+const trackRoutes = require('./routes/trackRoutes');
+const requireAuth = require('./middlewares/requireAuth');
+
+const app = express();
 
 app.use(bodyParser.json());
+app.use(authRoutes);
+app.use(trackRoutes);
 
 const DB_CONNECTION = process.env.APP_DB || 'location_tracker';
 
@@ -26,8 +31,6 @@ mongoose.connection.once('open', () => {
 app.get('/', (req, res) => {
 	res.send('hello world');
 });
-
-app.use(authRoutes);
 
 app.listen(4000, () => {
 	console.log('Listening on port 4000');
