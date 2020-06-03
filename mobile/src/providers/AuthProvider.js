@@ -2,13 +2,37 @@ import createDataContext from './createDataContext.js';
 
 const authReducer = (state, action) => {
   switch (action.type) {
+    case 'Signup':
+      return state;
+    case 'Signin':
+      return state;
+    case 'Signout':
+      return state;
     default:
       return state;
   }
 };
 
+const signup = (dispatch) => {
+  return ({ email, password }) => {
+
+  };
+};
+
+const signin = (dispatch) => {
+  return ({ email, password }) => {
+
+  };
+};
+
+const signout = (dispatch) => {
+  return ({ email, password }) => {
+
+  };
+};
+
 export const { Provider, Context } = createDataContext(
   authReducer,
-  {},
-  {isSignedIn: false}
+  { signup, signin, signout },
+  { isSignedIn: false }
 );
