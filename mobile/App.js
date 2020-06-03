@@ -4,12 +4,11 @@ import { BottomTabNavigation } from './src/layout/BottomTabNavigation.js'
 import { AuthStack } from './src/stacks/AuthStack.js';
 
 function App() {
-  const [user, setUser] = useState(true);
+  const [user, setUser] = useState(false);
 
   return (
     <NavigationContainer>
-      {/* {user ? <BottomTabNavigation /> : <AuthStack />} */}
-      <BottomTabNavigation />
+      {user ? <BottomTabNavigation /> : <AuthStack />}
     </NavigationContainer>
   );
 }
