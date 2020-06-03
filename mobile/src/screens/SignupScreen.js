@@ -19,6 +19,8 @@ export const SignupScreen = ({ navigation }) => {
         <Text style={styles.label}>Email</Text>
         <TextInput
           style={styles.input}
+          autoCapitalize='none'
+          autoCorrect={false}
           value={email}
           onChangeText={text => setEmail(text)}
         />

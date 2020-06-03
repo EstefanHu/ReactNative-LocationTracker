@@ -19,6 +19,8 @@ export const SigninScreen = ({ navigation }) => {
         <TextInput
           style={styles.input}
           value={email}
+          autoCapitalize='none'
+          autoCorrect={false}
           onChangeText={text => setEmail(text)}
         />
         <Text style={styles.label}>Password</Text>
