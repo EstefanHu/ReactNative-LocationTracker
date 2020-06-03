@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
   Octicons,
@@ -6,36 +6,10 @@ import {
   MaterialCommunityIcons,
   Ionicons
 } from '@expo/vector-icons';
-import { FeedContext } from '../providers/feedProvider';
-import { LibraryContext } from '../providers/libraryProvider';
-import { PortfolioContext } from '../providers/portfolioProvider';
-
-import { HomeStack } from '../stacks/homeStack';
-import { MapStack } from '../stacks/mapStack';
-import { PathStack } from '../stacks/pathStack';
-import { LibraryStack } from '../stacks/libraryStack';
-import { ProfileStack } from '../stacks/profileStack';
-import { CurrentContext } from '../providers/currentProvider';
 
 const Tabs = createBottomTabNavigator();
 
 export const AppTabs = () => {
-  const { setFeed } = useContext(FeedContext);
-  const { setLibrary } = useContext(LibraryContext);
-  const { setPortfolio } = useContext(PortfolioContext);
-  const { current } = useContext(CurrentContext);
-
-  useEffect(() => {
-    fetch('http://192.168.1.10:4000/mobile/base')
-      .then(res => res.json())
-      .then(res => {
-        setFeed(res.feed);
-        setLibrary(res.library);
-        setPortfolio(res.portfolio);
-      })
-      .catch(console.error);
-  }, []);
-
   return (
     <Tabs.Navigator
       screenOptions={({ route }) => ({
