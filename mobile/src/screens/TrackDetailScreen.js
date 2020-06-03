@@ -5,7 +5,7 @@ import {
   Text
 } from 'react-native';
 
-export const AccountScreen = () => {
+export const TrackDetailScreen = () => {
   return <Text>AccountScreen</Text>
 }
 

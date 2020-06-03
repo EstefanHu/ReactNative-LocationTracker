@@ -5,7 +5,7 @@ import { TrackDetailScreen } from '../screens/TrackDetailScreen.js';
 
 const Stack = createStackNavigator();
 
-export const AuthStack = () => (
+export const TrackStack = () => (
   <Stack.Navigator>
     <Stack.Screen name='TrackList' component={TrackListScreen} />
     <Stack.Screen name='TrackDetail' component={TrackDetailScreen} />
