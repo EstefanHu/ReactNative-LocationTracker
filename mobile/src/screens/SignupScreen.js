@@ -17,6 +17,7 @@ export const SignupScreen = ({ navigation }) => {
     <Container>
       <>
         <Text style={styles.header}>Sign Up for getting tracked</Text>
+        {state.errorMessage ? <Text style={styles.errorMessage}>{state.errorMessage}</Text> : null}
         <Text style={styles.label}>Email</Text>
         <TextInput
           style={styles.input}
@@ -32,7 +33,7 @@ export const SignupScreen = ({ navigation }) => {
           value={password}
           onChangeText={text => setPassword(text)}
         />
-        <TouchableOpacity onPress={() => signup({email, password})}>
+        <TouchableOpacity onPress={() => signup({ email, password })}>
           <Text style={styles.button}>Sign Up</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
@@ -46,6 +47,10 @@ export const SignupScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   header: {
     fontSize: 25
+  },
+  errorMessage: {
+    fontSize: 16,
+    color: 'red',
   },
   input: {
     height: 40,
