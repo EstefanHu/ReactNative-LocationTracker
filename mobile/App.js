@@ -3,9 +3,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { BottomTabNavigation } from './src/layout/BottomTabNavigation.js'
 import { AuthStack } from './src/stacks/AuthStack.js';
 
-import { Provider as AuthProvider} from './src/providers/AuthProvider.js';
+import { Provider as AuthProvider } from './src/providers/AuthProvider.js';
 
-function App() {
+const App = () => {
   const [user, setUser] = useState(false);
 
   return (

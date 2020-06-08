@@ -1,13 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
 } from 'react-native';
+import { Context as AuthContext } from '../providers/AuthProvider.js';
 import { Container } from '../components/container.js';
 
 export const SignupScreen = ({ navigation }) => {
+  const { state, signup } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -31,7 +33,7 @@ export const SignupScreen = ({ navigation }) => {
           value={password}
           onChangeText={text => setPassword(text)}
         />
-        <TouchableOpacity onPress={() => null}>
+        <TouchableOpacity onPress={() => signup({email, password})}>
           <Text style={styles.button}>Sign Up</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Signin')}>
