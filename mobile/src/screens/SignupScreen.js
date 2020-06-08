@@ -13,7 +13,6 @@ export const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-
   return (
     <Container>
       <>
