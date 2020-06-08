@@ -1,16 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { navigationRef } from './src/RootNavigation.js';
+
 import { BottomTabNavigation } from './src/layout/BottomTabNavigation.js'
 import { AuthStack } from './src/stacks/AuthStack.js';
 
-import { Provider as AuthProvider } from './src/providers/AuthProvider.js';
+import { Provider as AuthProvider, Context as AuthContext } from './src/providers/AuthProvider.js';
 
 const App = () => {
-  const [user, setUser] = useState(false);
+  const { state } = useContext(AuthContext);
 
   return (
-    <NavigationContainer>
-      {user ? <BottomTabNavigation /> : <AuthStack />}
+    <NavigationContainer ref={navigationRef}>
+      {state.token ? <BottomTabNavigation /> : <AuthStack />}
     </NavigationContainer>
   );
 }
