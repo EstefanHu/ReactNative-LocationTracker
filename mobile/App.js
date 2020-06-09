@@ -5,6 +5,7 @@ import { navigationRef } from './src/RootNavigation.js';
 import { BottomTabNavigation } from './src/layout/BottomTabNavigation.js'
 import { AuthStack } from './src/stacks/AuthStack.js';
 
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as AuthProvider, Context as AuthContext } from './src/providers/AuthProvider.js';
 
 const App = () => {
@@ -31,8 +32,10 @@ const App = () => {
 
 export default () => {
   return (
-    <AuthProvider>
-      <App />
-    </AuthProvider>
+    <SafeAreaProvider>
+      <AuthProvider>
+        <App />
+      </AuthProvider>
+    </SafeAreaProvider>
   )
 }

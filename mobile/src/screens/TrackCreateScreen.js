@@ -4,9 +4,15 @@ import {
   View,
   Text
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+
 
 export const TrackCreateScreen = () => {
-  return <Text>TrackCreateScreen</Text>
+  return (
+    <SafeAreaView>
+      <Text>TrackCreateScreen</Text>
+    </SafeAreaView>
+  )
 }
 
 const styles = StyleSheet.create({});
