@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,9 +9,13 @@ import { Context as AuthContext } from '../providers/AuthProvider.js';
 import { Container } from '../components/container.js';
 
 export const SignupScreen = ({ navigation }) => {
-  const { state, signup } = useContext(AuthContext);
+  const { state, signup, clearErrorMessage } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    navigation.addListener('blur', clearErrorMessage);
+  }, []);
 
   return (
     <Container>

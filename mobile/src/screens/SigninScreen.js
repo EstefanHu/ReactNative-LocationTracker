@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,9 +9,13 @@ import { Container } from '../components/container.js';
 import { Context as AuthContext } from '../providers/AuthProvider.js';
 
 export const SigninScreen = ({ navigation }) => {
-  const { state, signin } = useContext(AuthContext);
+  const { state, signin, clearErrorMessage } = useContext(AuthContext);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    navigation.addListener('blur', clearErrorMessage);
+  }, [])
 
   return (
     <Container>
@@ -33,7 +37,7 @@ export const SigninScreen = ({ navigation }) => {
           value={password}
           onChangeText={text => setPassword(text)}
         />
-        <TouchableOpacity onPress={() => signin({email, password})}>
+        <TouchableOpacity onPress={() => signin({ email, password })}>
           <Text style={styles.button}>Sign In</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigation.navigate('Signup')}>
@@ -47,6 +51,10 @@ export const SigninScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   header: {
     fontSize: 25
+  },
+  errorMessage: {
+    fontSize: 16,
+    color: 'red',
   },
   input: {
     height: 40,
