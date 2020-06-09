@@ -47,10 +47,8 @@ const tryLocalSignin = dispatch => async () => {
   if (token) dispatch({ type: 'sign_in', payload: token });
 }
 
-const signout = (dispatch) => {
-  return ({ email, password }) => {
-
-  };
+const signout = dispatch => async () => {
+  
 };
 
 export const { Provider, Context } = createDataContext(

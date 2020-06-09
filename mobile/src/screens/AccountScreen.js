@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   StyleSheet,
   View,
-  Text
+  Text,
+  Button,
 } from 'react-native';
+import { Context as AuthContext } from '../providers/AuthProvider.js';
 
 export const AccountScreen = () => {
+  const { signout } = useContext(AuthContext);
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
       <Text>Acount Screen</Text>
+      <Button title='logout' onPress={signout} />
     </View>
   )
 }
