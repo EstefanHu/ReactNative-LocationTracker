@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { navigationRef } from './src/RootNavigation.js';
 
@@ -8,7 +8,11 @@ import { AuthStack } from './src/stacks/AuthStack.js';
 import { Provider as AuthProvider, Context as AuthContext } from './src/providers/AuthProvider.js';
 
 const App = () => {
-  const { state } = useContext(AuthContext);
+  const { state, tryLocalSignin } = useContext(AuthContext);
+
+  useEffect(() => {
+    tryLocalSignin();
+  }, []);
 
   return (
     <NavigationContainer ref={navigationRef}>
