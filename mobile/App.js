@@ -1,4 +1,4 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { navigationRef } from './src/RootNavigation.js';
 
@@ -9,10 +9,18 @@ import { Provider as AuthProvider, Context as AuthContext } from './src/provider
 
 const App = () => {
   const { state, tryLocalSignin } = useContext(AuthContext);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    tryLocalSignin();
+    async function authenticate() {
+      await tryLocalSignin();
+      setIsLoading(false);
+    }
+    authenticate();
   }, []);
+
+  // Loading Screen
+  if (isLoading) return null;
 
   return (
     <NavigationContainer ref={navigationRef}>
