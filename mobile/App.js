@@ -13,11 +13,10 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    async function authenticate() {
+    (async function authenticate() {
       await tryLocalSignin();
       setIsLoading(false);
-    }
-    authenticate();
+    })();
   }, []);
 
   // Loading Screen
