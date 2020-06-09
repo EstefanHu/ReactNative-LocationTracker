@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { navigationRef } from './src/RootNavigation.js';
 
 import { BottomTabNavigation } from './src/layout/BottomTabNavigation.js'
 import { AuthStack } from './src/stacks/AuthStack.js';
 
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider as AuthProvider, Context as AuthContext } from './src/providers/AuthProvider.js';
+import { Provider as LocationProvider } from './src/providers/LocationProvider.js';
 
 const App = () => {
   const { state, tryLocalSignin } = useContext(AuthContext);
@@ -23,7 +23,7 @@ const App = () => {
   if (isLoading) return null;
 
   return (
-    <NavigationContainer ref={navigationRef}>
+    <NavigationContainer>
       {state.token ? <BottomTabNavigation /> : <AuthStack />}
     </NavigationContainer>
   );
@@ -33,7 +33,9 @@ export default () => {
   return (
     <SafeAreaProvider>
       <AuthProvider>
-        <App />
+        <LocationProvider>
+          <App />
+        </LocationProvider>
       </AuthProvider>
     </SafeAreaProvider>
   )
