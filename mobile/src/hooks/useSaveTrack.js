@@ -4,11 +4,14 @@ import { Context as LocationContext } from '../providers/LocationProvider.js';
 
 export default () => {
   const { createTrack } = useContext(TrackContext);
-  const { state: { name, locations } } = useContext(LocationContext);
+  const {
+    state: { name, locations },
+    reset
+  } = useContext(LocationContext);
 
   const saveTrack = async () => {
     await createTrack(name, locations);
-
+    reset();
   };
 
   return [saveTrack];
