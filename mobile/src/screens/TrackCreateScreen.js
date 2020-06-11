@@ -1,52 +1,25 @@
-// import '../_mockLocation.js';
-import React, { useState, useEffect } from 'react';
+import '../_mockLocation.js';
+import React, { useContext } from 'react';
 import {
   StyleSheet,
   Text
 } from 'react-native';
-import {
-  requestPermissionsAsync,
-  watchPositionAsync,
-  Accuracy
-} from 'expo-location';
+
+import { Context as LocationContext } from '../providers/LocationProvider.js';
+import useLocation from '../hooks/useLocation.js';
 
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Map } from '../components/map.js';
 
 export const TrackCreateScreen = () => {
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
-
-  useEffect(() => {
-    (async () => {
-      let { status } = await requestPermissionsAsync();
-      if (status !== 'granted') {
-        setErrorMsg('Permission to access location was denied');
-      }
-
-      await watchPositionAsync({
-        accuracy: Accuracy.BestForNavigation,
-        timeInterval: 1000,
-        distanceInterval: 10
-      }, location => {
-        console.log(location);
-      });
-      setLocation(location);
-    })();
-  });
-
-  let text = 'Waiting..';
-  if (errorMsg) {
-    text = errorMsg;
-  } else if (location) {
-    text = JSON.stringify(location);
-  }
+  const { addLocation } = useContext(LocationContext);
+  const [errorMsg] = useLocation(addLocation);
 
   return (
     <SafeAreaView forceIncet={{ top: 'always' }}>
       <Text style={styles.header}>Create Track</Text>
-      <Text>{text}</Text>
       <Map />
+      {errorMsg ? <Text>Please enable location services</Text> : null}
     </SafeAreaView>
   )
 }

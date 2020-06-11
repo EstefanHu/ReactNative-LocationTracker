@@ -32,11 +32,11 @@ const App = () => {
 export default () => {
   return (
     <SafeAreaProvider>
-      <AuthProvider>
-        <LocationProvider>
+      <LocationProvider>
+        <AuthProvider>
           <App />
-        </LocationProvider>
-      </AuthProvider>
+        </AuthProvider>
+      </LocationProvider>
     </SafeAreaProvider>
   )
 }
