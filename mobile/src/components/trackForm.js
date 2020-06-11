@@ -1,22 +1,42 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   StyleSheet,
   TextInput,
   Button,
   View
 } from 'react-native';
+import { Context as LocationContext } from '../providers/LocationProvider.js';
 
 export const TrackForm = () => {
+  const {
+    state: { name, recording, locations },
+    startRecording,
+    stopRecording,
+    changeName
+  } = useContext(LocationContext);
+
+  console.log(locations.length);
+
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.input}
+        value={name}
+        onChangeText={text => changeName(text)}
         placeholder='Enter Name'
       />
-      <Button
-        style={styles.button}
-        title='Start Recording'
-      />
+      {recording ?
+        <Button
+          style={styles.button}
+          title='Stop Recording'
+          onPress={stopRecording}
+        />
+        : <Button
+          style={styles.button}
+          title='Start Recording'
+          onPress={startRecording}
+        />
+      }
     </View>
   )
 }
@@ -27,11 +47,12 @@ const styles = StyleSheet.create({
     paddingVertical: 5,
   },
   input: {
-    height: 10,
+    height: 40,
     width: '80%',
-    paddingVertical: 15,
-    borderBottomColor: 'grey',
+    borderColor: 'grey',
     borderBottomWidth: 1,
+    paddingHorizontal: 8,
+    fontSize: 16
   },
   button: {
     backgroundColor: 'blue',

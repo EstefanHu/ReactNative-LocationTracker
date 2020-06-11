@@ -1,5 +1,5 @@
 import '../_mockLocation.js';
-import React, { useContext } from 'react';
+import React, { useContext, useCallback } from 'react';
 import {
   StyleSheet,
   Text,
@@ -18,7 +18,8 @@ import { useIsFocused } from '@react-navigation/native';
 
 export const TrackCreateScreen = () => {
   const { state, addLocation } = useContext(LocationContext);
-  const [errorMsg] = useLocation(useIsFocused(), (location) => addLocation(location, state.recording));
+  const callback = useCallback(location => addLocation(location, state.recording), [state.recording])
+  const [errorMsg] = useLocation(useIsFocused(), callback);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
