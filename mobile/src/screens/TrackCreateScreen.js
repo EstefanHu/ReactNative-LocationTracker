@@ -19,7 +19,7 @@ import { useIsFocused } from '@react-navigation/native';
 export const TrackCreateScreen = () => {
   const { state, addLocation } = useContext(LocationContext);
   const callback = useCallback(location => addLocation(location, state.recording), [state.recording])
-  const [errorMsg] = useLocation(useIsFocused(), callback);
+  const [errorMsg] = useLocation(useIsFocused() || state.recording, callback);
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
