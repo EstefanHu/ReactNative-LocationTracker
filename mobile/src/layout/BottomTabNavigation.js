@@ -31,6 +31,7 @@ export const BottomTabNavigation = () => {
         activeTintColor: 'tomato',
         inactiveTintColor: 'gray',
       }}
+      backBehavior={"initialRoute"}
     >
       <Tabs.Screen name='Track' component={TrackStack} />
       <Tabs.Screen name='Create' component={TrackCreateScreen} />
