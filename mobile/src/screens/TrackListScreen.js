@@ -19,7 +19,7 @@ export const TrackListScreen = () => {
       renderItem={({item}) => {
         return <TouchableOpacity>
           <View style={styles.item}>
-            <Text>item.name</Text>
+            <Text>{item.name}</Text>
           </View>
         </TouchableOpacity>
       }}

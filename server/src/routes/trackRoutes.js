@@ -9,9 +9,7 @@ const router = express.Router();
 router.use(requireAuth);
 
 router.get('/tracks', async (req, res) => {
-  console.log('getting tracks')
   const tracks = await Track.find({ userId: req.user._id });
-  console.log(tracks)
   res.send(tracks);
 });
 
