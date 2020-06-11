@@ -1,4 +1,5 @@
 import createDataContext from './createDataContext.js';
+import trackerApi from '../api/tracker.js';
 
 const TrackReducer = (state, action) => {
   switch (action.type) {
@@ -10,7 +11,7 @@ const TrackReducer = (state, action) => {
 const fetchTracks = dispatch => () => { };
 
 const createTrack = dispatch => (name, locations) => {
-  console.log(name, locations.length);
+  
 };
 
 export const { Provider, Context } = createDataContext(
