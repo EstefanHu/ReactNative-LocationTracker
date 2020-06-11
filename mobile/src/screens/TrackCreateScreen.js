@@ -17,8 +17,8 @@ import { TrackForm } from '../components/trackForm.js';
 import { useIsFocused } from '@react-navigation/native';
 
 export const TrackCreateScreen = () => {
-  const { addLocation } = useContext(LocationContext);
-  const [errorMsg] = useLocation(useIsFocused(), addLocation);
+  const { state, addLocation } = useContext(LocationContext);
+  const [errorMsg] = useLocation(useIsFocused(), (location) => addLocation(location, state.recording));
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
