@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {
   Octicons,
@@ -11,9 +11,13 @@ import { AccountScreen } from '../screens/AccountScreen.js';
 
 import { TrackStack } from '../stacks/TrackStack.js';
 
+import { Context as TrackContext } from '../providers/TrackProvider.js';
+
 const Tabs = createBottomTabNavigator();
 
 export const BottomTabNavigation = () => {
+  const { fetchTracks } = useContext(TrackContext);
+
   return (
     <Tabs.Navigator
       screenOptions={({ route }) => ({
@@ -33,7 +37,7 @@ export const BottomTabNavigation = () => {
       }}
       backBehavior={"initialRoute"}
     >
-      <Tabs.Screen name='Track' component={TrackStack} />
+      <Tabs.Screen name='Track' component={TrackStack} listeners={{ focus: fetchTracks }} />
       <Tabs.Screen name='Create' component={TrackCreateScreen} />
       <Tabs.Screen name='Account' component={AccountScreen} />
     </Tabs.Navigator>
