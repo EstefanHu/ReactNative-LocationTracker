@@ -11,15 +11,15 @@ import useLocation from '../hooks/useLocation.js';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Map } from '../components/map.js';
 
-export const TrackCreateScreen = () => {
+export const TrackCreateScreen = ({ navigation }) => {
   const { addLocation } = useContext(LocationContext);
-  const [errorMsg] = useLocation(addLocation);
+  const [errorMsg] = useLocation(navigation.isFocused(), addLocation);
 
   return (
     <SafeAreaView forceIncet={{ top: 'always' }}>
       <Text style={styles.header}>Create Track</Text>
-      <Map />
       {errorMsg ? <Text>Please enable location services</Text> : null}
+      <Map />
     </SafeAreaView>
   )
 }
